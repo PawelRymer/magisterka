@@ -59,18 +59,29 @@ in the Face of New RODO Regulation Requirements}
 
 %tutaj zaczyna się właściwa treść dokumentu
 \begin{document}
-\bibliographystyle{plabbrv} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+\bibliographystyle{abbrv} %tylko gdy używamy BibTeXa, ustawia styl bibliografii
 
 \maketitle %polecenie generujące stronę tytułową
 %\dedication{6cm}{To jest przykładowa treść opcjonalnej dedykacji, należy ją zmienić lub usunąć w całości polecenie \texttt{$\backslash$dedication}}
 
 \tableofcontents %spis treści
 
-\chapter{Wprowadzenie}
-\chapter{Cel i zakres pracy} \label{sec:sekcjaWprowadzenie}
-Krotko i rzeczowo o tym co w pracy, dotyczy modulu ktory bedzie zaimplementowany, na koniec krotki przewodnik po rozdzialach, bez punktow.
-\section{Opis problemu}
-Bardziej szczegolowy opis nadchodzacych zmian
+\chapter{Purpose and scope of work} \label{sec:sekcjaWprowadzenie}
+
+%Krotko i rzeczowo o tym co w pracy, dotyczy modulu ktory bedzie zaimplementowany, na koniec krotki przewodnik po rozdzialach, bez punktow.
+
+%Używanie skrótu polskiego, wyjasnic w jednym - dwóch zdaniach.
+
+This work presents issues related to personal data processing in the face of General Data Protection Regulation (GDPR/RODO). Upcoming changes in regulations oblige any entity that processes data to meet certain requirements. This entity is related to, among others, enterprises and companies. The more data is being processed in such entity, the more complex structure is required to manage this data. For medium and large enterprises, amount of data being processed requires the use of advanced IT systems. In the face of GDPR, such IT system should also support meeting new standard of personal data protection.\\
+\indent In this work will be described the value which personal data represents,  origins of personal data protection, legal state in Poland before GDPR, what is GDPR, what it stands for and scope of changes in regulations. The available solutions will be analyzed and there will be also described proposed prototype of GDPR supporting module for existing GRC system.
+
+\section{Description of the problem}
+%Bardziej szczegolowy opis nadchodzacych zmian
+
+On the 25th of May 2018, GDPR will take effect. Introduced changes can be divided in two ways, these more revolutionary, and these less revolutionary. These less revolutionary are basis legal concepts or rules of personal data processing which didn't actually change since current state. These more revolutionary are connected with rules to practical application \cite{giodo}. These rules assumes increasing self-reliance, but also responsibility of data administrators.\\
+\indent New regulation determines way of approaching to data processing called \textit{risk based approach}. It assumes that first thing that we do during gathering and using personal data is to analyze risk that could be caused for people which data concern. Another thing is \textit{accountability rule}. It assumes that any data administrator has a duty to introduce appropriate technical and organizational mesures appling compliance with regulation requrements, but at the same time it does not describe neither any best practices nor minimal technical standards. 
+
+
 
 \chapter{Ochrona danych osobowych} \label{sec:sekcjaDaneOsobowe}
 \section{Dane osobowe jako wartosc}
@@ -101,7 +112,7 @@ Bardziej szczegolowy opis nadchodzacych zmian
 \section{Microsoft GDPR}
 \section{SAP}
 
-\chapter{Prototyp modulu smartGDPR wspierajacy zgodnosc z RODO} \label{sec:sekcjaAnalizaRozwiazan}
+\chapter{Prototyp modulu smartGDPR wspierajacy zgodnosc z RODO} \label{sec:sekcjaOpisPrototypu}
 \section{Rejestr danych przetwarzania}
 \section{...}
 
@@ -109,4 +120,8 @@ Bardziej szczegolowy opis nadchodzacych zmian
 
 \chapter{Podsumowanie}
 \label{sec:Podsumowanie}
+
+\addcontentsline{toc}{chapter}{Bibliography} %utworzenie w spisie treści pozycji Bibliografia
+\bibliography{bibliografia} % wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia thebibliography
+
 \end{document}
