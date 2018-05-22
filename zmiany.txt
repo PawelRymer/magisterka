@@ -1,3 +1,8 @@
+19-22.05.2018r - Dokończenie punktu 2.3, analiza  statusu prawnego w Polsce
+	       	 przed rozpoczęciem obowiązywania RODO w punkcie 2.4,
+		 własna interpretacja zagrożeń związanych z przetwarzaniem
+		 danych osobowych w punkcie 2.5
+
 18.05.2018r - Rozwiniecie punktu 2.3
 
 16.05.2018r - Punkt 2.1 do zamknięcia, rozwinięty punkt 2.2, nowe pozycje w
