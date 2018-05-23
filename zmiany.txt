@@ -1,3 +1,6 @@
+23.05.2018r - Wstęp do rozdzialu o RODO, rozwiniecie punktu o definicji danych
+	      osobowych wedlug RODO.
+
 19-22.05.2018r - Dokończenie punktu 2.3, analiza  statusu prawnego w Polsce
 	       	 przed rozpoczęciem obowiązywania RODO w punkcie 2.4,
 		 własna interpretacja zagrożeń związanych z przetwarzaniem
