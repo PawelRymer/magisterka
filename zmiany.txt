@@ -1,6 +1,7 @@
 24.05.2018r - Poprawk w pierwszy rozdziale - dopisanie co bylo koniecznoscia
 	      wprowadzenia nowych przepisow w ramach opisu problemu
-	      (drugi akapit punktu 1.1)
+	      (drugi akapit punktu 1.1), dalsze rozwiniecie punktu o danych
+	      osobowych według RODO.
 
 23.05.2018r - Wstęp do rozdzialu o RODO, rozwiniecie punktu o definicji danych
 	      osobowych wedlug RODO.
