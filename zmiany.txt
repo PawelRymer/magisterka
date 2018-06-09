@@ -1,3 +1,6 @@
+9.06.2018r - Rozwiniecie punktu o nowych obowiazkach informacyjnych oraz
+	     poczatek punktu o prawach podmiotu danych
+
 31.05.2018r - Dokończenie punktu o ogólnych zasadach przetwarzania danych
 	      osobowych, wraz z podsumowaniem.
 
@@ -27,3 +30,9 @@
 	      
 19.04.2018r - Dokończenie punktu 1.1 (Opis problemu), wstęp do rozdziału 2
 	      (Ochrona danych osobowych)
+
+
+
+
+The new regulation assumes to realize information obligation towards persons, which data concern. This approach is similar to the previous provisions e.g. Directive 95/46/EC or Polish Act on personal data protection. However, the RODO introduces obligations which so far were not necessery. This applies, among other, to the information about duration of the processing data, possible profiling and its consequences or contact details to the Data Protection Officer, if he is appointed. Therefore, having regard to the information clauses existing before date of RODO coming into force, they need to be reviewed to ensure that they meet requirements of the principle of data transparency. This approach is recomended by Working Group of Article 29 RODO \cite{delloite_inform}.   
+
