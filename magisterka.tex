@@ -174,7 +174,7 @@ The general rules for the processing of personal data are clearly set out int th
 
 \item \textit{limited data storage} - refers to the principle of data minimization, but slighty extend it. It requires that prior to the start of the processing, determine the time of their storage, after which this data has be removed, and also periodical reviews of data should be implemented,
 
-\item \textit{integrity and confidentiality of data} - this point imposes on the data administrator the obligation to protect data in terms of inviolability from unathorized access. It also obliges to quickly restore data to the correct state after any incident. It does not specify exactly what technical measures are to be used, but when it comes to confidentiality, it suggests, for example, using pseudonymisation or data encryption,
+\item \textit{integrity and confidentiality of data} - this point imposes on the data administrator the obligation to protect data in terms of inviolability from unathorized access. It also obliges to quickly restore data to the correct state after any incident. It does not specify exactly what technical measures are to be used, but when it comes to confidentiality, it suggests, for example, using \textit{pseudonymisation} or data encryption. RODO defines \textit{pseudonymisation} as the processing of personal data in a way that makes it impossible to assign them to the data subject without additional information \cite{rodo_art4},
 
 \item \textit{accountability} - the last of these rules is the point of contact between all the above. At this point, the data administrator is required to demonstrate compliance with all of these principles. The practical implementation therefore requires him to analyze all measures taken to demonstrate compliance with the general rules of personal data processing personal data contained in the RODO.
 \end{itemize}
@@ -236,10 +236,30 @@ The consent of the data subject is one of the basic premises for the legal proce
 
 \end{itemize}
 
-\indent As regards children, the RODO allows the processing of data of persons over 16 years of age. It also stipulates that Member States may reduce this age, but not more than up to the age of 13. The consent given by the legal guardian of the child is necessary below the age limit. At this point, the new regulations require the administrator to implement reasonable measures to verify whether it is the authorized person who consented.
-
+\indent As regards children, the RODO allows the data processing of persons over 16 years of age. It also stipulates that Member States may reduce this age, but not more than up to the age of 13. The consent given by the legal guardian of the child is necessary below the age limit. At this point, the new regulations require the administrator to implement reasonable measures to verify whether it is the authorized person who consented.
 
 \section{Security}
+
+Each data controller must individually implement appropriate organizational and technical measures to ensure that the amount of data processed, the scope of their processing or their storage period do not violate the new provisions of the GDPR. This also applies to the availability of this data, and above all to the guarantee that these data will not be made available to unauthorized persons without the consent of their owner. In terms of IT infrastructure and the tools used in it, the main authority for the protection of personal data in Poland, on the basis of the new regulation, distinguishes the following safeguards \cite{lexdigital_srodki}:
+
+\begin{itemize}
+
+\item \textit{authentication} - giving special permissions to people who process personal data by data controller,
+
+\item \textit{firewall protection} - according to the new regulation, the IT system processing personal data should be protected against threats from the network by means of implementing physical or logical security measures,
+
+\item \textit{encryption of personal data} - transmission of files with personal data should be encrypted. The files themselves should be password protected and sent to the recipient in a different way,
+
+\item \textit{data backups} - according to the RODO it is recommended to create backups and store them in a different place than the right data. However, according to the principle of limited storage, after the specified processing period has elapsed or its purpose has been achieved, all data should be deleted,
+
+\item \textit{pseudonymisation} - recommended as an effective measure limiting the ability to link data with a natural person. It consists in replacing one of the attributes with the other, which implies the possibility of indirect identification of that person.
+
+\item \textit{anonymisation} - it consists in transforming the data in a way that makes it impossible to identify person on their basis. This process is assumed to be irreversible.
+
+\end{itemize}
+
+In addition to the technical safeguards suggested, it should also be noted that it is people and not machines that pose the greatest threat to data processing. Therefore, the data controller should also adequately ensure the implementation of organizational measures in relation to the personnel responsible for the processing of personal data. This is, among others, about raising the level of knowledge and awareness of employees, keeping records of persons responsible for data processing, organization of work space and ensuring the secrecy of data processing among staff.
+
 \section{Documentation of processed data}
 \section{Rules of privacy by design and privacy by default}
 \section{Impact assesments for data protection}
