@@ -1,3 +1,8 @@
+18.06.2018r - Przeniesienie punktu o zagrozeniach zwiazanych z przetwarzaniem
+	      danych osobowych do opisu problemu, zamiana skrotu RODO w calej
+	      pracy na GDPR + wyjasnienie we wstepie, poprawienie punktu
+	      Scope of Work, wstep do 4 rozdzialu, kompresja rozdzialu o RODO.
+
 14.06.2018r - Punkt o zabezpieczeniach przetwarzania danych osobowych
 
 9-12.06.2018r - Dokonczenie punktu o prawach podmiotu danych oraz rozwiniecie
