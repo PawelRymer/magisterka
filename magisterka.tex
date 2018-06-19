@@ -57,6 +57,9 @@ in the Face of New RODO Regulation Requirements}
 \field{Computer science (INF)}
 \specialisation{Internet Engineering (INE)}
 
+%umozliwia tworzenie wzglednych sciezek do plikow zrodlowych
+\graphicspath{{../obrazki/}}
+
 %tutaj zaczyna się właściwa treść dokumentu
 \begin{document}
 \bibliographystyle{abbrv} %tylko gdy używamy BibTeXa, ustawia styl bibliografii
@@ -157,7 +160,7 @@ In the scope of the definition of personal data, the GDPR does not introduce any
 
 \indent Significant differences in the new regulation occur on the basis of certain categories of data, the processing of which is generally prohibited, and allowed only under certain conditions. The current Polish law defines them as \textit{sensitive data} \cite{uodo_art27} while the GDPR uses the concept of \textit{specific data category} \cite{rodo_art9}. A novelty in the collection of these special categories of data is the precisie definition of the concepts of genetic data and biometric data. In addition, some categories of data, which previously were included in this collection, according to Polish law, are not covered by new regulations as special category of data. This applies to religious beliefs, religious affilation, party affilation, information on judgements issued in court or administrative proceedings, or addictions.  Instead, information about ideological beliefs were included.
 
-\section{Principles of data processing and their scope}
+\section{Principles of data processing and their scope} \label{sec:sekcjaZasadyOgolne}
 
 The general rules for the processing of personal data are clearly set out int the new European regulation. Article 5 is comprehensive set of general rules for the processing of personal data. This collection consist of principles:
 \begin{itemize}
@@ -345,17 +348,84 @@ The first step of the analysis was to verify what data related directly to indiv
 
 \end{itemize}
 
-After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts. From this level, the authorized person can check the login history of a given user, he has the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of minimizing processing, it may not be necessary to know the name or surname of a person assigned to a given account.
+After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts (Fig. \ref{fig:accountsAdministration}). From this level, the authorized person can check the login history of a given user, he has also the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of data minimization (\ref{sec:sekcjaZasadyOgolne}), it may not be necessary to know the name or surname of a person assigned to a given account.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[Exemplary view of administrating users accounts]{Exemplary view of administrating users accounts}
+	\label{fig:accountsAdministration}
+\end{figure}
+
+Therefore, an effective form of protection of personal data should be implemented against unauthorized access, it is explicitly stated in the Article 25 GDPR \cite{rodo_art25}. In addition, Article 32 provides that a person who has access to the processing of personal data may process it only at the request of the personal data administrator \cite{rodo_art32}. Therefore, beside the implementation of appropriate measures to secure personal data, it is also necessary to introduce functionality which will help to manage the access to the processing of personal data. At this point, it may also be useful to know who has granted such access and when. This is particularly important from the point of view of the accountability rule (\ref{sec:sekcjaZasadyOgolne}). 
+
+
+%\begin{figure}[] % dwa obrazki obok
+%\subfigure[Schemat prostej pamięci neuronowej \cite{sztuczne_sieci_neuronowe}]%{\includegraphics[width=6cm]{pamiecHopfielda.png}}
+%\hfill
+%\subfigure[Odtwarzanie ksztaltu obrazu na podstawie fragmentów \cite{sztuczne_sieci_neuronowe}]{\includegraphics[width=6.7cm]{odtwarzanieKsztaltuKlucza.png}}
+%\hfill
+%\caption[Przykładowy schemat i zastosowanie sieci Hopfielda]{Przykładowy Schemat i zastosowanie sieci Hopfielda }
+%\label{fig:schematIZastosowanieSieciHopfielda}
+%\end{figure}
+
 
 \subsection{Pseudonymisation of personal data}
 
+The first step to bring the existing system to compliance is to put in place an effective data protection mechanism. Article 25 of the Regulation indicates the pseudonymisation of data as an effective form of such protection. Defining a set of personal data processed in the application indicates which data should be pseudonymised by default. Analysis of the places where this data is processed allows to conclude that sensitive places for personal data are several views in main application modules (Fig. \ref{fig:accountsAdministrationPseudonimized}). This is the administration module responsible for managing employees and accounts in the system, the smartWorkflow module, due to the management of user permissions in the SAP system and smartAccess, due to the extensive event logging system of usage of the emergency account. In the mentioned modules, apart from the administration module, there is a high interaction between users at various levels of authority (user-controller, applicant-approval etc.).\\
+\indent As regards the pseudonymisation process itself, the Regulation does not mention pseudonymisation methods. However, the Working Party, which is an independent European advisory authority in the field of personal data protection, indicates the most common methods of pseudonymisation \cite{pseudonimizacja_2017}.\\
+\indent The modular structure of the application also requires the introduction of a pseudonymisation configuration that allows flexible definition of the data to be protected (Fig. \ref{fig:pseudonimizationConf}). This is important because each of the modules processes personal data to varying degrees, which is related to the scope of data needed for processing for a specific purpose (\ref{sec:sekcjaZasadyOgolne}). Access to this configuration is provided for the administrator by giving him an appropriate role in the system, entitling him to access the configuration panel.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[Exemplary view of administrating users accounts with pseudonimization included]{Exemplary view of administrating users accounts with pseudonimization included}
+	\label{fig:accountsAdministrationPseudonimized}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[View of pseudonimization configuration]{View of pseudonimization configuration}
+	\label{fig:pseudonimizationConf}
+\end{figure}
+
 \subsection{Managing access to the personal data}
+
+In the next step, one need to ensure that the application is compatible with the authorization of access to the processing of personal data. The configuration of pseudonymisation from the previous step provides the data controller with global control over the degree of confidentiality of personal data. In order for him also to have proper control over the distribution of permissions to the processing of personal data, it was necessary to implement the appropriate interface in the application, which will allow to determine to whom and for what period of time the rights will be granted. It was also important from the point of view of compliance with the accountability principle in order to be able to prove that the processing of personal data occurred only under the authority of the administrator.\\
+\indent This interface was implemented by creating a register with access only for the administrator or authorized person on the basis of assigning the appropriate role in the system. From its level, the administrator can grant permissions to selected users for a selected period of time, as well as delete the permission granted (Fig. \ref{fig:dataAccessPanel}). In addition, in the panel of a given user account, the history of granted access to personal data processing has been added in the form of a list containing all data about granted permission (Fig. \ref{fig:usersDataAccessHistory}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[Registry panel of entitled to personal data processing]{Registry panel of entitled to personal data processing}
+	\label{fig:dataAccessPanel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[The history of the user's accesses to processing of personal data]{The history of the user's accesses to processing of personal data}
+	\label{fig:usersDataAccessHistory}
+\end{figure}
+
+To increase the level of security, full access to personal data and their processing may take place if the user has:
+
+\begin{itemize}
+
+\item the appropriate role in the system that allows access to a specific view (earlier functionality),
+\item access granted by the administrator via the panel of access to the processing of personal data (new functionality),
+\item in the system, this person is assigned to a specific consent, which is the legal basis for the processing of personal data. In the absence of this consent, an error message appears in the admin panel.
+
+\end{itemize}
+
 
 \subsection{Logs}
 
 
-\section{New module supporting compliance with GDPR}
 
+\section{New module supporting compliance with GDPR}
+ 
 \subsection{Register of processing activities}
 
 \subsection{Register of consents}
@@ -370,5 +440,10 @@ After determining the set of all personal data appearing in the application, it 
 
 \addcontentsline{toc}{chapter}{Bibliography} %utworzenie w spisie treści pozycji Bibliografia
 \bibliography{bibliografia} % wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia thebibliography
+\addcontentsline{toc}{chapter}{List of figures}
+%opcjonalnie może się tu pojawić spis rysunków i tabel
+\listoffigures
+\addcontentsline{toc}{chapter}{List of tables}
+\listoftables
 
 \end{document}
