@@ -282,7 +282,7 @@ The entry into force of the regulation not only forces companies to adapt to the
 \chapter{Prototype of the application that supports compatibility with GDPR}\label{sec:sekcjaOpisPrototypu}
 
 The subject of this chapter is the application prototype, created on the basis of an existing business support tool called smartGRC. This application is a modular information system that can work with various business systems and applications available on the market. Its main task is to control the use of IT systems used inside the company, in order to limit the attempts of abuses by users as much as possible. This process involves the processing of employees personal data, and hence, compliance with new regulations.\\
-\indent The construction of the prototype consisted of two stages. The first was to adapt the application to the new requirements regarding the processing of personal data by the application itself. It means analyzing the existing functionalities to determine the scope of personal data being processed, their type, sensitivity, reasonableness of their processing and the level of their accessibility. Thanks to this, it is possible to specify which specific points of the regulation this processing applies to, and what mechanisms should be used to make this processing safe and legal.\\
+\indent The construction of the prototype consisted of two stages. The first was to adapt the application to the new requirements regarding the processing of personal data by the application itself. It means analyzing the existing functionalities to determine the scope of personal data being processed, potential risks for their owners, their type, sensitivity, reasonableness of their processing and the level of their accessibility. Thanks to this, it is possible to specify which specific points of the regulation this processing applies to, and what mechanisms should be used to make this processing safe and legal.\\
 \indent The second stage was the implementation of features supporting compliance with GDPR. This means expanding the existing system with such functionalities so that it can be successfully used as a support in fulfilling the new legal obligations imposed on the data controller.
 
 \section{Application status before adapting to GDPR}
@@ -310,6 +310,42 @@ Some of the above-mentioned tools support the compatibility with GDPR indirectly
 \section{Adapting the application to compliance with GDPR}
 
 The first step of the analysis was to verify what data related directly to individuals are processed in the application. On this basis, a data set has been defined that contains:
+
+\begin{itemize}
+
+\item Basic data:
+
+\begin{itemize}
+\item First name, last name, staff number, Active Directory identifier.
+\end{itemize}
+
+\item Administration data (related to employee):
+
+\begin{itemize}
+\item Organization unit, department, position, building code.
+\end{itemize}
+
+\item Administration data (related to user account):
+
+\begin{itemize}
+\item Login, Secure Network Communications login.
+\end{itemize}
+
+\item Data related to usage of smartAccess account:
+
+\begin{itemize}
+\item External employee.
+\end{itemize}
+
+\item Address data:
+
+\begin{itemize}
+\item Address, phone number, mobile number, e-mail, room number, floor number.
+\end{itemize}
+
+\end{itemize}
+
+After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts. From this level, the authorized person can check the login history of a given user, he has the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of minimizing processing, it may not be necessary to know the name or surname of a person assigned to a given account.
 
 \subsection{Pseudonymisation of personal data}
 
