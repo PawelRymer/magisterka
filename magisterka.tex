@@ -264,8 +264,7 @@ In addition to the technical safeguards suggested, it should also be noted that 
 
 \chapter{Analysis of commercial solutions in the scope of support of personal data processing} \label{sec:sekcjaAnalizaRozwiazan}
 
-The entry into force of the regulation not only forces companies to adapt to the new requirements, but also created a space for new business solutions that, by supporting compliance with GDPR, may be a new source of profit. One of the areas of business where the new regulations constitute a particularly important subject of interest is the GRC area. This area has no formal definition, while the acronym comes from the words \textit{Governance}, \textit{Risk} and \textit{Compliance}. The lack of a formal definition results in the freedom to interpret this concept depending on the organization, but all boil down to the integration of these three elements, as well as the interaction between people, technologies and processes supporting them \cite{grc_2017}. \textit{Governance} defines the way of managing the organization and managing the risks, including their planning, use and counteracting them, \textit{Risk} stands for identifying risks possible to occure based on the analysis of resources and processes in the organization, \textit{Compliance} means fulfilling internal and external requirements, including provisions of legal acts, such as GDPR and industry guidelines \cite{grc_2017}.
-
+The entry into force of the regulation not only forces companies to adapt to the new requirements, but also created a space for new business solutions that, by supporting compliance with GDPR, may be a new source of profit. One of the areas of business where the new regulations constitute a particularly important subject of interest is the GRC area. This area has no formal definition, while the acronym comes from the words \textit{Governance}, \textit{Risk} and \textit{Compliance}. The lack of a formal definition results in the freedom to interpret this concept depending on the organization, but all boil down to the integration of these three elements, as well as the interaction between people, technologies and processes supporting them \cite{grc_2017}. \textit{Governance} defines the way of managing the organization and managing the risks, including their planning, use and counteracting them, \textit{Risk} stands for identifying risks possible to occure based on the analysis of resources and processes in the organization, \textit{Compliance} means fulfilling internal and external requirements, including provisions of legal acts, such as GDPR and industry guidelines \cite{grc_2017}.\\
 \indent The subject of the next chapter will be the presentation of changes implemented in business application operating in this area, which is why it is justified to present the analysis of solutions available in this field. This will allow one to formulate functional requirements and help to choose those which will not only adapt the application to the new regulations, but also make them a useful tool supporting the data controller in new duties.
 
 \section{RSA Archer GRC}
@@ -280,16 +279,57 @@ The entry into force of the regulation not only forces companies to adapt to the
 
 
 
-\chapter{Prototyp modulu smartGDPR wspierajacy zgodnosc z RODO} \label{sec:sekcjaOpisPrototypu}
-\section{Przystosowanie aplikacji do przetwarzania danych zgodnie z RODO}
-\section{Rejestr czynności przetwarzania}
-\section{Rejestr zgód}
-\section{Słownik}
-\section{...}
+\chapter{Prototype of the application that supports compatibility with GDPR}\label{sec:sekcjaOpisPrototypu}
 
-\chapter{Wnioski} \label{sec:sekcjaWnioski}
+The subject of this chapter is the application prototype, created on the basis of an existing business support tool called smartGRC. This application is a modular information system that can work with various business systems and applications available on the market. Its main task is to control the use of IT systems used inside the company, in order to limit the attempts of abuses by users as much as possible. This process involves the processing of employees personal data, and hence, compliance with new regulations.\\
+\indent The construction of the prototype consisted of two stages. The first was to adapt the application to the new requirements regarding the processing of personal data by the application itself. It means analyzing the existing functionalities to determine the scope of personal data being processed, their type, sensitivity, reasonableness of their processing and the level of their accessibility. Thanks to this, it is possible to specify which specific points of the regulation this processing applies to, and what mechanisms should be used to make this processing safe and legal.\\
+\indent The second stage was the implementation of features supporting compliance with GDPR. This means expanding the existing system with such functionalities so that it can be successfully used as a support in fulfilling the new legal obligations imposed on the data controller.
 
-\chapter{Podsumowanie}
+\section{Application status before adapting to GDPR}
+
+The usefulness of the smartGRC application is based on its modular construction. Thanks to this, one can adapt this tool to different company's needs. The application includes the following modules:
+
+\begin{itemize}
+
+\item smartWorkFlow - a tool for managing user permissions in different systems and business applications, e.g. SAP,
+
+\item smartAccess - a tool that allows users in special situations to access an account with a wide range of rights in the SAP system. It also allows one to control the risk resulting from granting these rights through detailed logging of events from the use of this account,
+
+\item smartSoD - a tool allowing to analyze the distribution of duties, simulations and periodical reviews of entitlements,
+
+\item smartReport - a tool that allows you to generate personalized and customized reports on data in the system,
+
+\item smartArchitect - a tool that allows one to create and manage a roles catalog,
+
+\item smartReview - a tool that allows one to cyclically analyze the permissions held by users
+
+\end{itemize}
+
+Some of the above-mentioned tools support the compatibility with GDPR indirectly from the idea itself and not only from the need to adpat to new conditions. Managing privileged access, reporting risks arising from the segregation of duties, identifying people with too wide access to various systems, including the processing of personal data, all these concepts overlap in some part with the assumptions of the new regulation. This indicates how close the two areas are to each other, the protection of personal data and the support of the business on the field of GRC. However, the smartGRC system at the construction stage was not adapted to the requirements and direct support of compliance with GDPR, because it was created in 2008, 8 years before the adoption of new regulations. For this reason, the application had to be analyzed in terms of compliance with the new regulations in order to be able to continue to be a fully usable business support tool.
+
+\section{Adapting the application to compliance with GDPR}
+
+The first step of the analysis was to verify what data related directly to individuals are processed in the application. On this basis, a data set has been defined that contains:
+
+\subsection{Pseudonymisation of personal data}
+
+\subsection{Managing access to the personal data}
+
+\subsection{Logs}
+
+
+\section{New module supporting compliance with GDPR}
+
+\subsection{Register of processing activities}
+
+\subsection{Register of consents}
+
+\subsection{Dictionary}
+
+
+\chapter{Conclusions} \label{sec:sekcjaWnioski}
+
+\chapter{Summary}
 \label{sec:Podsumowanie}
 
 \addcontentsline{toc}{chapter}{Bibliography} %utworzenie w spisie treści pozycji Bibliografia
