@@ -348,7 +348,7 @@ The first step of the analysis was to verify what data related directly to indiv
 
 \end{itemize}
 
-After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts (Fig. \ref{fig:accountsAdministration}). From this level, the authorized person can check the login history of a given user, he has also the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of data minimization (\ref{sec:sekcjaZasadyOgolne}), it may not be necessary to know the name or surname of a person assigned to a given account.
+After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts (Fig. \ref{fig:accountsAdministration}). From this level, the authorized only by system role person can check the login history of a given user, he has also the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of data minimization (\ref{sec:sekcjaZasadyOgolne}), it may not be necessary to know the name or surname of a person assigned to a given account.
 
 \begin{figure}[]
 	\centering
@@ -372,8 +372,8 @@ Therefore, an effective form of protection of personal data should be implemente
 
 \subsection{Pseudonymisation of personal data}
 
-The first step to bring the existing system to compliance is to put in place an effective data protection mechanism. Article 25 of the Regulation indicates the pseudonymisation of data as an effective form of such protection. Defining a set of personal data processed in the application indicates which data should be pseudonymised by default. Analysis of the places where this data is processed allows to conclude that sensitive places for personal data are several views in main application modules (Fig. \ref{fig:accountsAdministrationPseudonimized}). This is the administration module responsible for managing employees and accounts in the system, the smartWorkflow module, due to the management of user permissions in the SAP system and smartAccess, due to the extensive event logging system of usage of the emergency account. In the mentioned modules, apart from the administration module, there is a high interaction between users at various levels of authority (user-controller, applicant-approval etc.).\\
-\indent As regards the pseudonymisation process itself, the Regulation does not mention pseudonymisation methods. However, the Working Party, which is an independent European advisory authority in the field of personal data protection, indicates the most common methods of pseudonymisation \cite{pseudonimizacja_2017}.\\
+The first step to bring the existing system to compliance is to put in place an effective data protection mechanism. Article 25 of the Regulation indicates the pseudonymisation of data as an effective form of such protection. Defining a set of personal data processed in the application indicates which data should be pseudonymised by default. Analysis of the places where this data is processed allows to conclude that the most sensitive places for personal data are several views in main application modules (Fig. \ref{fig:accountsAdministrationPseudonimized}). This is the administration module responsible for managing employees and accounts in the system, the smartWorkflow module, due to the management of user permissions in the SAP system and smartAccess, due to the extensive event logging system of usage of the emergency account. In the mentioned modules, apart from the administration module, there is a high interaction between users at various levels of authority (user-controller, applicant-approval etc.).\\
+\indent As regards the pseudonymisation process itself, the Regulation does not mention the best pseudonymisation methods. However, the Working Party, which is an independent European advisory authority in the field of personal data protection, indicates the most common methods of pseudonymisation \cite{pseudonimizacja_2017}. In this case, pseudonymisation is realized by substitute the data with the string of asterisks ("\textit{*}").\\
 \indent The modular structure of the application also requires the introduction of a pseudonymisation configuration that allows flexible definition of the data to be protected (Fig. \ref{fig:pseudonimizationConf}). This is important because each of the modules processes personal data to varying degrees, which is related to the scope of data needed for processing for a specific purpose (\ref{sec:sekcjaZasadyOgolne}). Access to this configuration is provided for the administrator by giving him an appropriate role in the system, entitling him to access the configuration panel.
 
 \begin{figure}[H]
@@ -392,8 +392,8 @@ The first step to bring the existing system to compliance is to put in place an 
 
 \subsection{Managing access to the personal data}
 
-In the next step, one need to ensure that the application is compatible with the authorization of access to the processing of personal data. The configuration of pseudonymisation from the previous step provides the data controller with global control over the degree of confidentiality of personal data. In order for him also to have proper control over the distribution of permissions to the processing of personal data, it was necessary to implement the appropriate interface in the application, which will allow to determine to whom and for what period of time the rights will be granted. It was also important from the point of view of compliance with the accountability principle in order to be able to prove that the processing of personal data occurred only under the authority of the administrator.\\
-\indent This interface was implemented by creating a register with access only for the administrator or authorized person on the basis of assigning the appropriate role in the system. From its level, the administrator can grant permissions to selected users for a selected period of time, as well as delete the permission granted (Fig. \ref{fig:dataAccessPanel}). In addition, in the panel of a given user account, the history of granted access to personal data processing has been added in the form of a list containing all data about granted permission (Fig. \ref{fig:usersDataAccessHistory}).
+In the next step, one need to ensure that the application is compatible in the terms of the access to the processing of personal data. The configuration of pseudonymisation from the previous step provides the data controller with global control over the degree of confidentiality of personal data. In order for him also to have proper control over the distribution of permissions to the processing of personal data, it was necessary to implement the appropriate interface in the application, which will allow to determine to whom and for what period of time the rights will be granted. It was also important from the point of view of compliance with the accountability principle (\ref{sec:sekcjaZasadyOgolne}) in order to be able to prove that the processing of personal data occurred only under the authority of the administrator.\\
+\indent This interface was implemented by creating a register with access only for the administrator or authorized person on the basis of assigning the appropriate role in the system. From its level, the administrator can grant permissions to selected users for a selected period of time, as well as delete the granted permissions (Fig. \ref{fig:dataAccessPanel}). In addition, in the panel of a given user account, the history of granted access to personal data processing has been added in the form of a list containing all data about granted permission (Fig. \ref{fig:usersDataAccessHistory}).
 
 \begin{figure}[H]
 	\centering
@@ -415,23 +415,127 @@ To increase the level of security, full access to personal data and their proces
 
 \item the appropriate role in the system that allows access to a specific view (earlier functionality),
 \item access granted by the administrator via the panel of access to the processing of personal data (new functionality),
-\item in the system, this person is assigned to a specific consent, which is the legal basis for the processing of personal data. In the absence of this consent, an error message appears in the admin panel.
+\item assignment to a specific consent in the system, which is the legal basis for the processing of personal data. In the absence of this consent, an error message appears in the admin panel (new functionality).
 
 \end{itemize}
 
 
 \subsection{Logs}
 
+The final stage of application adaptation was the expansion of system logs. This functionality involved capability for recording of information on any changes introduced in both the configuration of pseudonymisation, as well as the granting and deleting by the administrator of access to the processing of personal data. Logs of these events are equally important from the point of view of the accountability principle, as keeping the register of privileges granted. However, in this case, information about who and when made the change is saved, as well as the range of values that have changed (in the case of pseudonymization). 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{konta.png}
+	\caption[Example of recorded log after granting permission to the processing of personal data]{Example of recorded log after granting permission to the processing of personal data}
+	\label{fig:Logs}
+\end{figure}
 
 \section{New module supporting compliance with GDPR}
  
+New obligations imposed on personal data administrators create a space for new solutions in this area. One of such new duties is the registration of processing activities \cite{rodo_art30}. It is imposed on every enterprise or entity that employs more than 250 people, or where the purpose for which it processes personal data may carry the risk of violating the rights of such persons. Such a register must also be kept if the processing is not occasional, it involves the processing of a specific category of personal data or personal data regarding court judgments.\\
+\indent This register is required for two reasons. The first is direct compliance with article 30 of GDPR. The second is to allow the supervisory authority to verify the processing carried out. For enterprises using business support of the GRC area, this is particularly important. Apart from the fact that it is possible to employ over 250 people, personal data may be processed there in many different systems, and each such system must have properly cataloged personal data.\\
+\indent In the case of the smartGRC application, this is an important fact because significant part of its functionality is based on cooperation with other business applications that process personal data in various systems. The development of the smartGRC system with a register of processing activities is therefore fully justified by the considerations of both the application area itself and its competitiveness on the market. This tool is the basis for the successive development of a new application module that is smartGDPR.
+ 
 \subsection{Register of processing activities}
 
-\subsection{Register of consents}
+The analysis of available market solutions from the previous chapter showed that the degree of complexity of this tool may be different depending on the needs of the application in which it was implemented. Although the register of processing activities according to assumptions has the form of a simple form for collecting specific information divided into sections, it must be sufficiently detailed and at the same time legible and easy to use in order to be able to effectively fulfill its task. For the needs of the smartGRC application, the functionality of the processing activity register collects the data about:
+
+\begin{itemize}
+
+\item Basic information:
+
+\begin{itemize}
+
+\item Number, name and description of registry,
+\item person adding the registry,
+\item time of adding,
+\item person modifing the registry,
+\item time of modification,
+\item status.
+
+\end{itemize}
+
+\item Stakeholders:
+
+\begin{itemize}
+
+\item Data controller,
+\item processing entity,
+\item data protection officer.
+
+\end{itemize}
+
+\item Scope of processing data:
+
+\begin{itemize}
+
+\item Purpose of processing,
+\item description of processing operation,
+\item role in the processing,
+\item legal basis,
+\item methods of aquiring data,
+\item methods of transferring data to processors,
+\item information about third-party companies,
+\item information about transmitting data to third countries or international organizations (including names of coutries and organizations)
+\item processed categories of data,
+\item categories of data audience related to processing,
+\item specification of categories of people whose data concern,
+\item retention period,
+\item way of proceeding after the retention period,
+\item information about the high risk of violation of the rights and freedoms of natural persons,
+\item information on the required performance of data protection impact assesment,
+\item related business processes,
+\item inforamtion on applications / systems.
+
+\end{itemize}
+
+\item Security identification:
+
+\begin{itemize}
+
+\item policies,
+\item control procedures,
+\item technical security,
+\item organizational security.
+
+\end{itemize}
+
+\end{itemize}
+
+For the register to be complete, each of the information must be provided. The completed processing activities form after approval is saved in the database.
 
 \subsection{Dictionary}
 
+The dictionary serves as a repository of values used in the form adding a new processing activity. There are fields in it that are used in the form of adding a new processing activity. Its collection of fields is permanent and contains:
+
+\begin{enumerate}
+
+\item Business unit,
+\item third parties,
+\item company,
+\item department,
+\item purpose of processing,
+\item role in the processing,
+\item legal basis,
+\item methods of aquiring data,
+\item methods of transmitting data,
+\item categories of processed data,
+\item categories of data audience,
+\item categories of persons which data concer,
+\item way of proceeding after retention period,
+\item applications / systems,
+\item processing entity - third parties,
+\item representative,
+\item policies,
+\item control procedures,
+\item technical securities,
+\item organizational securities.
+
+
+\end{enumerate}
+
+As one can easily see, some of the dictionary fields coincide with the data required to fill in the form adding a new processing activity. The essence of its application was to improve the filling in of this form. Because of the amount of data that need to enter into the form, writing everything by hand would be too cumbersome. This process has been improved thanks to the use of a dictionary that can be completed both from the interface of the dictionary itself and when filling out the form. One can assign specific values to each field, depending on the needs of the organization that uses this tool.
 
 \chapter{Conclusions} \label{sec:sekcjaWnioski}
 
