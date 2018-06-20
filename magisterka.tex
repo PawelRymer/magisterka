@@ -261,9 +261,27 @@ Each data controller must individually implement appropriate organizational and 
 In addition to the technical safeguards suggested, it should also be noted that it is people and not machines that pose the greatest threat to data processing. Therefore, the data controller should also adequately ensure the implementation of organizational measures in relation to the personnel responsible for the processing of personal data. This is, among others, about raising the level of knowledge and awareness of employees, keeping records of persons responsible for data processing, organization of work space and ensuring the secrecy of data processing among staff.
 
 \section{Documentation of processed data}
+
+The new regulation puts a lot of emphasis on documenting the processing of personal data. This is particularly important from the point of view of the accountability principle (\ref{sec:sekcjaZasadyOgolne}) to which data controllers must adhere. In particular, this applies to information such as:
+
+\begin{itemize}
+
+\item Type of data held,
+\item way of obtain them,
+\item legal basis for their processing,
+\item way of fulfilling the information obligation,
+\item to whom and when this data is shared,
+\item way of reporting security breach incidents,
+\item method of appointing a data protection officer,
+\item supervisory authority for cross-border (\ref{sec:transGran}) data processing.
+
+\end{itemize}
+
+The GDPR regulations require explicitly that in certain conditions the data controller keeps a register of processing activities \cite{rodo_art30}. Examples of such circumstances are the employment of more than 250 people by the entity, or specific processing conditions, such as a high risk of violating the rights and freedoms of the data subject or the processing of a specific data category. The very concept of processing activities is not defined in the regulation, whereas GIODO indicates that this can be interpreted as a set of operations on data that are interrelated. They can be carried out by one or several people, which can be defined collectively in connection with the purpose of undertaking these activities \cite{giodo_dokumentacja}. The new regulation also indicates that such a register is required to enable the supervisory authority to properly monitor the processing.
+
 \section{Rules of privacy by design and privacy by default}
 \section{Data protection violations and impact assessments}
-\section{Cross-border data processing}
+\section{Cross-border data processing} \label{sec:transGran}
 
 \chapter{Analysis of commercial solutions in the scope of support of personal data processing} \label{sec:sekcjaAnalizaRozwiazan}
 
@@ -352,7 +370,7 @@ After determining the set of all personal data appearing in the application, it 
 
 \begin{figure}[]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=16cm]{konta.PNG}
 	\caption[Exemplary view of administrating users accounts]{Exemplary view of administrating users accounts}
 	\label{fig:accountsAdministration}
 \end{figure}
@@ -378,14 +396,14 @@ The first step to bring the existing system to compliance is to put in place an 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=16cm]{kontaPseud.PNG}
 	\caption[Exemplary view of administrating users accounts with pseudonimization included]{Exemplary view of administrating users accounts with pseudonimization included}
 	\label{fig:accountsAdministrationPseudonimized}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=16cm]{pseudoConf.PNG}
 	\caption[View of pseudonimization configuration]{View of pseudonimization configuration}
 	\label{fig:pseudonimizationConf}
 \end{figure}
@@ -397,14 +415,14 @@ In the next step, one need to ensure that the application is compatible in the t
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=16cm]{dataAccess.PNG}
 	\caption[Registry panel of entitled to personal data processing]{Registry panel of entitled to personal data processing}
 	\label{fig:dataAccessPanel}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=16cm]{accessHistory.PNG}
 	\caption[The history of the user's accesses to processing of personal data]{The history of the user's accesses to processing of personal data}
 	\label{fig:usersDataAccessHistory}
 \end{figure}
@@ -426,7 +444,7 @@ The final stage of application adaptation was the expansion of system logs. This
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm]{konta.png}
+	\includegraphics[width=4cm]{log.PNG}
 	\caption[Example of recorded log after granting permission to the processing of personal data]{Example of recorded log after granting permission to the processing of personal data}
 	\label{fig:Logs}
 \end{figure}
@@ -547,7 +565,7 @@ As one can easily see, some of the dictionary fields coincide with the data requ
 \addcontentsline{toc}{chapter}{List of figures}
 %opcjonalnie może się tu pojawić spis rysunków i tabel
 \listoffigures
-\addcontentsline{toc}{chapter}{List of tables}
-\listoftables
+%\addcontentsline{toc}{chapter}{List of tables}
+%\listoftables
 
 \end{document}
