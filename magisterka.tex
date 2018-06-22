@@ -350,7 +350,7 @@ In the scope of supporting requirements according to GDPR, this system provide t
 
 \item RSA Archer Data Governance - module supporting the organization in identifying, managing and implementing appropriate controls regarding the personal data processing activities. It gives the opportunity to review the data retention schedules and provides the functionality of maintaining the expanded registry of processing activities. Supports the management of notices and consents for the processing of personal data.
 
-\item RSA Archer Privacy Program Management - module supporting the organization in grouping of processing activities in order to evaluate the impact of data protection and monitor communication with data protection authorities in relation to regulatory and data violations. It also allows you to assess the impact of these effects on privacy. Conducting such assessments is required in accordance with the provisions of Articles 35 and 36 of the GDPR.
+\item RSA Archer Privacy Program Management - module supporting the organization in grouping of processing activities in order to evaluate the impact of data protection and monitor communication with data protection authorities in relation to regulatory and data violations. It also allows you to assess the impact of these effects on privacy. Conducting such assessments is required in accordance with the provisions of Articles 35 and 36 of the GDPR. 
 
 \end{itemize}
 
@@ -373,9 +373,31 @@ Examples of such solutions are:
 \end{itemize}
 
 
-\section{Microsoft GDPR}
+\section{Microsoft}
 
+Microsoft is an IT company founded in 1975 by Bill Gates and Paul Allen. One of the largest enterprises in the industry in the global market. Known mainly as a manufacturer of the Windows and MS-DOS operating system and Office suite. In addition to its flagship products, the company also deals with the creation of computer games, Xbox consoles, Visual Studio programming tools, media services such as the MSNBC news channel, provides a place in the cloud in the form of OneDrive service, as well as a computing platform by Azure, and a number of other solutions. In terms of business support, Microsoft offers a group of Microsoft Dynamics 365 products. They are used for customer relations management (CRM), enterprise resource management (ERP), material resource planning (MRP) and supply chain management (SCM). In terms of compatibility with GDPR, Microsoft offers a set of tools supporting the protection of personal data in its products:
 
+\begin{itemize}
+
+\item Data Loss Prevention for Office 365 - for identifing sensitive categories of data,
+
+\item Rights Management Services and Azure Information Protection - a tool used to protect documents and electronic correspondence. It allows for their encryption, labeling and classification,
+
+\item Advanced Threat Protection - protection in the field of isolation and scanning of electronic mailboxes in order to detect and protect against suspicious attachments,
+
+\item Microsoft Cloud App Security - management of access to applications and data in the cloud,
+
+\item Azure Backup - a supporting tool in data retention,
+
+\item Compliance Manager - monitors the state of implementation of Microsoft solutions in the area of data protection and compliance with legal requirements.
+
+\end{itemize}
+
+\section{Summary}
+
+The basic feature of all the above solutions is to ensure compliance of personal data processing with the new requirements resulting from GDPR. This is mainly done by analyzing the managed data set in terms of identifying personal data and detecting particulary sensitive data, as well as introducing data access management. Direct data protection is also a key aspect for each of the above examples. It is also extremely important to properly manage data retention and the ability of the system to select and delete, as soon as possible, selected personal data or those whose legal processing has already passed.\\
+\indent Both the RSA product and the SAP toolkit, whose task is to directly support the company, offer solutions dedicated to supporting data administrators in legal duties. In this respect, there are many different possibilities of different solutions, the selection of which depends on the individual needs of the company. The SAP toolbox as one of the most comprehensive tools for comprehensive support of the company offers a whole range of different solutions in this area, but they are built into larger modules, which can generate a redundant cost for the case of particular solution. RSA Archer GRC serves as a specialized tool for supporting organizations in the field of GRC and offers two specialist solutions in the field of supporting the administrator, such as modules for managing personal data processing activities. Microsoft does not offer any IT solutions dedicated to supporting data controllers, but it guarantees compatibility of its products with GDPR.\\
+\indent The smartGRC application being the subject of modification in the next chapter is used to support the company in the field of GRC, but it is not as extensive a tool as RSA Archer GRC, and even more so SAP products. Therefore, for her needs, the most justified choice is the implementation of support functionality in the registration of processing activities, which is the basis in both of the previously mentioned tools.
 
 \chapter{Prototype of the application that supports compatibility with GDPR}\label{sec:sekcjaOpisPrototypu}
 
@@ -645,6 +667,46 @@ The rapid development of technology gives us more and more opportunities in the 
 \indent This work addresses the issue of supporting the processing of personal data based on an IT system in a company in the face of the new GDPR regulation. This legal act aims to adapt legal requirements to the current state of technological, social and political development. It introduces a number of mechanisms that are to safeguard the privacy of data subjects, reduce the pointless collection of personal data by various entities, and improve the cross-border flow of data.\\
 \indent  The result of this work is the prototype of the application created on the basis of the existing IT system that processes personal data, which has been adapted not only to meet the new legal requirements, but also supports the entity that processes personal data in new legal obligations. In order to achieve this goal, it was necessary first of all to analyze the changes that took place in the law after the new regulations came into force. On the basis of this analysis, it was possible to determine in which aspects the previous system does not comply with the new regulation. It also allowed to define the requirements necessary to implement in the prototype so that it could continue to fulfill its function. The analysis of the new provisions has also helped to determine what are the new obligations imposed on the data controller, and the analysis of existing, commercial market solutions in this area, indicated the best practices in supporting the administrator in these duties. The result is a new module being the basis for further development. Functionality in the new module supports the administrator in fulfilling the obligation to document the processing of personal data.\\
 \indent In the future, this module may be extended with other functionalities. For example a register of categories of operations related to processing, i.e. types of services that the processor performs on behalf of particular administrators, or a system for verifying the legitimacy of processing personal data.
+
+\chapter{Abstract in Polish}
+\label{sec:StreszczeniePol}
+
+\textit{Cel i zakres pracy}\\ \\
+\indent Niniejsza praca porusza problematykę przetwarzania danych osobowych w przedsiębiorstwie wobec nowego rozporządzenia RODO (\textit{Rozporządzenie Ogólne o Ochronie Danych Osobowych}). Dotyczy ono przetwarzania a także ochrony danych osób fizycznych a podlegać mu będą wszystkie organizacje, firmy, oraz przedsiębiorstwa, które na swoje potrzeby przetwarzają dane osobowe.\\
+\indent W pracy tej zostają omówione podstawowe zagadnienia dotyczace danych osobowych, od definicji, przez genezę ich prawnej ochrony, status przepisów w Polsce przed wejściem w życie rozporządzenia RODO aż po omowienie najważniejszych zmian jakie wnoszą nowe przepisy. Następnie przeanalizowane zostaną dostępne na rynku komercyjne rozwiązania, które pozwolą określić jak funkcjonalności mogą zapewnić zgodność z RODO a także jakie są oferowane narzędzia do wspierania administratorów danych. Część projektowa tej pracy obejmuje dostosowanie istniejącego systemu informatycznego przetwarzającego dane osobowe do zgodności z RODO, a także wprowadzenie w nim nowych funkcjonalności które pozwolą na wsparcie administratórów danych w ich nowych prawnych obowiązkach.
+\indent Wejście w życie nowego rozporządzenia wnosi wiele zmian w zakresie przetwarzania danych osobowych, które wymagają od podmiotów przetwarzających takie dane spełnienie określonych wymagań. Powodem wprowadzenia nowych przepisów, jest gwałtowny rozwój technologiczny, społeczny oraz polityczny na świecie. Coraz większa moc obliczeniowa komputerów pozwala przechowywać i przetwarzać coraz więcej danych z coraz większą prędkością. Komputeryzacja urządzeń codziennego użytku, oraz ich zdolność do wymiany danych przez internet, skutkuje zbieraniem coraz większej ilości danych o ich użytkownikach. Stwarza to zagrożenie dla prywatności jednostki, ponieważ traci ona kontrolę nad ochroną dostępu do swoich personalnych danych. Wiele przedsiębiorstw opiera swój model biznesowy na przetwarzaniu takich danych osobowych. Nowe rozporządzenia ma na celu zapobiegać sytuacjom nadużyć w zakresie przetwarzania danych osobowych, chronić prywatność podmiotów danych w możliwie największym stopniu, a wobec politycznego rozwioju Unii Europejskiej także usprawniać transgraniczny przepływ tych danych.\\ \\
+
+\indent \textit{Ochrona danych osobowych} \\ \\
+\indent Dane osobowe stanowią bardzo wysoką wartość w dzisiejszym świecie.
+Wiele różnych przedsiębiorstw przetwarza dane osobowe w celu osiągania profitów. Przykładem niech będą firmy marketingowe, które na podstawie zachowań ludzi są w stanie dopasować reklamy, które będą atrakcyjne dla potencjalnych nabywców różnych produktów bądź usług. Kosz takich danych jest zależny od rodzaju dostarczanych informacji. Im bardziej precyzyjne dane, tym koszt jest większy. Dane osobowe mogą służyć także do celów politycznych, aby na podstawie poglądów politycznych określić preferowane opcje polityczne. Dlatego też, aby uniknąć niekontrolowanego wykorzystania tych danych z negatywnymi skutkami dla ich właścicieli tak ważna jest ochrona danych osobowych.
+\indent Ochrona danych osobowych ma swoje źródła w rozważaniach filozoficznych. Pierwsze poważne artykuły odnoszące się do prawa do prywatności pojawiły się u schyłku XIX w. Przepisy prawne odnoszące się bezpośrednio do ochrony danych osobowych są stosunkowo nowe i pojawiły się w drugiej połowie XX wieku na terenach państw europejskich. W historycznych aktach prawa międzynarodowego XX wieku, ochrona danych osobowych była raczej "dodatkiem" do przepisów o ochronie prywatności. Akty takie zaczęły pojawiać się w Europie w połowie XX wieku.
+\indent W prawie Polskim przed wejściem RODO, ochronę danych osobowych ragulowały głównie Konstytucja Rzeczypospolitej Polski oraz Ustawa o Ochronie Danych Osobowych, obie z 1997 roku. W związku z przystąpienie Polski do Unii Europejskiej, należało dostosować to prawo do obowiązującej w Europie Dyrektywy 95/46/WE za pomocą szeregu poprawek.\\ \\
+
+\indent \textit{RODO} \\ \\
+\indent Rozporządzenie RODO zostało uchwalone jako Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie
+swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne
+rozporządzenie o ochronie danych). Powstała jako odpowiedź na rosnące przemiany w zakresie technologii, przemian społecznych i politycznych na terenie Unii Europejskiej. Przepisów tych muszą przestrzegać wszystkie podmioty przetwarzające dane osobowe.
+\indent W zakresie definicji danych osobowych, RODO doprecyzowuje ją względem wcześniejszych definicji a także wprowadza i precyzuje także nowe pojęcia takie jak dane biometryczne, dane genetyczne czy pseudonimizacja danych.\\
+\indent Opiera ogólne zasady przetwarzania danych osobowych na regułach takich jak zgodność z prawem, rzetelność, klarowność, ograniczony cel przetwarzania danych, minimalizacji danych, poprawności danych, ograniczonego przechowywania danych, integralności i poufności danych a także rozliczalnośći.\\
+\indent Wprowadza nowe obowiązki informacyjne dla administratorów danych, które przewidują jasny, zwięzły i prosty sposób informowania podmiotów danych o tym w jakim celu i w jaki sposób ich dane będą przetwarzane. Daje właścicielom danych osobowych prawa do bycia poinformowanych o czynności przetwarzania, do dostępu do danych, do sprostowania/uzupełnienia danych, do bycia zapomnianym, do ograniczena przetwarzania, do transferu danych, do sprzeciwu a także do niepodlegania automatycznym decyzjom.\\
+\indent Określa podstawy prawne na jakich przetwarzanie może się odbywać. Jedną za takich podstaw jest zgoda podmiotu danych, która powinna być wyrażona dobrowolnie a także w odpowiedniej formie, potwierdzającej świadomość osoby wyrażającej zgodę na przetwarzanie danych. \\
+\indent Nakłada na administratorów danych obowiązek wprowadzenia odpowiednich środków organizacyjnych i technicznych w celu ochrony danych przed zniszczeniem, nieuprawnionym dostępem czy modyfikacją. Wymienia środki ochrony takie jak autoryzacja, ochrona firewall, szyfrowanie danych osobowych, tworzenie kopii zapasowych, pseudonimizację czy anonimizację.\\
+\indent Nakłada na administratora danych bezpośredni obowiązek dokumentowania przetwarzania danych osobowych w formie rejestru czynności przetwarzania, określając precyzyjnie, jakie informacje w takim rejestrze musza się znaleźć. Ma to umożliwić organowi nadzorczemu wgląd w proces przetwarzania danych u danego podmiotu.\\
+\indent Wprowadza zasady ochrony danych w fazie projektowania a także domyślnej ochrony danych, które mają skutkować skuteczną ochronę danych osobowych już w fazie planowania projektu zakładającego przetwarzającego dane osobowe.\\
+\indent Nakłada na administratorów danych obowiązek informowania organu nadzorczego o incydencie naruszenia ochrony danych osobowych w czasie do 72 godzin od momentu wykrycia incydentu. Nakazuje także wprowadzenie odpowiednich środków umożliwiający jak najszybsze wykrycie takiego incydentu. W momencie powstania ryzyka naruszenia praw i wolności podmiotów danych nakazuje także bezzwłoczne ich powiadomienie.\\
+\indent Za bardzo poważne naruszenia przepisów nowe rozporządzenie przewiduje kary rzędu 20 000 000 EUR albo 4\% całkowitego światowego obrotu za roku poprzedni w zależności co większe. Za mniej poważne naruszenia przepisów, przewidywana jest kara 10 000 000 EUR lub 2\% całkowitego światowego obrotu za rok poprzedni, w zależności co większe.
+
+\indent \textit{Analiza komercyjnych rozwiązań w zakresie wspierania przetwarzania danych osobowych} \\ \\
+\indent
+
+\indent \textit{Prototyp aplikacji wspierającej zgodność z RODO} \\ \\
+\indent
+
+\indent \textit{Wnioski} \\ \\
+\indent
+
+\indent \textit{Podsumowanie} \\ \\
+\indent
 
 
 \addcontentsline{toc}{chapter}{Bibliography} %utworzenie w spisie treści pozycji Bibliografia
