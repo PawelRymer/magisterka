@@ -24,6 +24,7 @@
 \usepackage{hhline}
 
 \usepackage{float}
+\usepackage{listings}
 \usepackage{inputenc}
 \usepackage{enumitem}
 \usepackage[colorlinks = true,
@@ -401,7 +402,7 @@ The basic feature of all the above solutions is to ensure compliance of personal
 
 \chapter{Prototype of the application that supports compatibility with GDPR}\label{sec:sekcjaOpisPrototypu}
 
-The subject of this chapter is the application prototype, created on the basis of an existing business support tool called smartGRC. This application is a modular IT system that can work with various business systems and applications available on the market. Its main task is to control the use of IT systems used inside the company, in order to limit the attempts of abuses by users as much as possible. This process involves the processing of employees personal data, and hence, compliance with new regulations.\\
+The subject of this chapter is the application prototype, created on the basis of an existing business support tool called smartGRC. This application is a modular IT system that can work with various business systems and applications available on the market. From the mechanics side, it is a web application that works on the server and is available to users through the intranet of the organization in which it is implemented. Its main task is to control the use of IT systems used inside the company, in order to limit the attempts of abuses by users as much as possible. This process involves the processing of employees personal data, and hence, compliance with new regulations.\\
 \indent The construction of the prototype consisted of two stages. The first was to adapt the application to the new requirements regarding the processing of personal data by the application itself. It means analyzing the existing functionalities to determine the scope of personal data being processed, potential risks for their owners, their type, sensitivity, reasonableness of their processing and the level of their accessibility. Thanks to this, it is possible to specify which specific points of the regulation this processing applies to, and what mechanisms should be used to make this processing safe and legal.\\
 \indent The second stage was the implementation of features supporting compliance with GDPR. This means expanding the existing system with such functionalities so that it can be successfully used as a support in fulfilling the new legal obligations imposed on the data controller.
 
@@ -465,9 +466,25 @@ The first step of the analysis was to verify what data related directly to indiv
 
 \end{itemize}
 
-After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views, for example to the administration of users accounts (Fig. \ref{fig:accountsAdministration}). From this level, the authorized only by system role person can check the login history of a given user, he has also the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of data minimization (\ref{sec:sekcjaZasadyOgolne}), it may not be necessary to know the name or surname of a person assigned to a given account.
+After determining the set of all personal data appearing in the application, it was analyzed in relation to the places where any of this data is processed. From among about 180 views of the application, 36 were designated in which personal data are processed uncorrectly. Almost half of the cases was the possibility of unauthorized access associated with the windows of user or employee selection from the list, on which there are such data as login, name, surname, position, department, data of the superior (Fig. \ref{fig:employeesPopup}).
 
 \begin{figure}[]
+	\centering
+	\includegraphics[width=16cm]{employeesList.png}
+	\caption[Example window for employee selection from list]{Example of window for employee selection from list}
+	\label{fig:employeesPopup}
+\end{figure}
+
+Based on this information, it became clear that the application has places where, despite the use of access control in the form of roles assigned to users by the administrator, data processing is not completely safe against the new regulations. These roles entitle users to whom they are assigned to access specific views (Fig. \ref{fig:oldRole}), or example to the administration of users accounts (Fig. \ref{fig:accountsAdministration}). From this level, the authorized only by system role person can check the login history of a given user, he has also the option of administratively logging it out, however, he should not have access to data such as the name or surname of a given user without the administrator's authorization. In other words, for this purpose of processing personal data, in accordance with the principle of data minimization (\ref{sec:sekcjaZasadyOgolne}), it may not be necessary to know the name or surname of a person assigned to a given account.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=6cm]{oldRole.png}
+	\caption[Access authorization scheme using roles]{Access authorization scheme using roles}
+	\label{fig:oldRole}
+\end{figure}
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=16cm]{konta.PNG}
 	\caption[Exemplary view of administrating users accounts]{Exemplary view of administrating users accounts}
@@ -489,22 +506,55 @@ Therefore, an effective form of protection of personal data should be implemente
 
 \subsection{Pseudonymisation of personal data}
 
-The first step to bring the existing system to compliance is to put in place an effective data protection mechanism. Art 25 of the Regulation indicates the pseudonymisation of data as an effective form of such protection. Defining a set of personal data processed in the application indicates which data should be pseudonymised by default. Analysis of the places where this data is processed allows to conclude that the most sensitive places for personal data are several views in main application modules (Fig. \ref{fig:accountsAdministrationPseudonimized}). This is the administration module responsible for managing employees and accounts in the system, the smartWorkflow module, due to the management of user permissions in the SAP system and smartAccess, due to the extensive event logging system of usage of the emergency account. In the mentioned modules, apart from the administration module, there is a high interaction between users at various levels of authority (e.g. user-controller, applicant-approval etc.).\\
-\indent As regards the pseudonymisation process itself, the Regulation does not mention the best pseudonymisation methods. However, the Working Party, which is an independent European advisory authority in the field of personal data protection, indicates the most common methods of pseudonymisation \cite{pseudonimizacja_2017}. In this case, pseudonymisation is realized by substitute the data with the string of asterisks ("\textit{*}").\\
-\indent The modular structure of the application also requires the introduction of a pseudonymisation configuration that allows flexible definition of the data to be protected (Fig. \ref{fig:pseudonimizationConf}). This is important because each of the modules processes personal data to varying degrees, which is related to the scope of data needed for processing for a specific purpose (\ref{sec:sekcjaZasadyOgolne}). Access to this configuration is provided for the administrator by giving him an appropriate role in the system, entitling him to access the configuration panel.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=16cm]{kontaPseud.PNG}
-	\caption[Exemplary view of administrating users accounts with pseudonimization included]{Exemplary view of administrating users accounts with pseudonimization included}
-	\label{fig:accountsAdministrationPseudonimized}
-\end{figure}
+The first step to bring the existing system to compliance is to put in place an effective data protection mechanism. Art 25 of the Regulation indicates the pseudonymisation of data as an effective form of such protection. Defining a set of personal data processed in the application indicates which data should be pseudonymised by default. Analysis of the places where this data is processed allows to conclude that the most sensitive places for personal data are several views in main application modules. This is the administration module responsible for managing employees and accounts in the system, the smartWorkflow module, due to the management of user permissions in the SAP system and smartAccess, due to the extensive event logging system of usage of the emergency account. In the mentioned modules, apart from the administration module, there is a high interaction between users at various levels of authority (e.g. user-controller, applicant-approval etc.).\\
+\indent The modular structure of the application also requires the introduction of a pseudonymisation configuration that allows flexible definition of the data to be protected (Fig. \ref{fig:pseudonimizationConf}). This is important because each of the modules processes personal data to varying degrees, which is related to the scope of data needed for processing for a specific purpose (\ref{sec:sekcjaZasadyOgolne}). Access to this configuration is provided for the administrator by giving him an appropriate role (Fig. \ref{fig:oldRole}) in the system, entitling him to access the configuration panel.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=16cm]{pseudoConf.PNG}
 	\caption[View of pseudonimization configuration]{View of pseudonimization configuration}
 	\label{fig:pseudonimizationConf}
+\end{figure}
+
+According to the default privacy rule, in the default configuration all fields will be checked, which means that unauthorized users will not have access to any of these data in the application. This configuration is global for the entire application, which means that one setting is then used for each user in each application location. In the future, however, it is expected that this functionality will be expanded to include the option of selecting users to assign this configuration.
+
+\indent As regards the pseudonymisation process itself, the Regulation does not mention the best pseudonymisation methods. However, the Working Party, which is an independent European advisory authority in the field of personal data protection, indicates the most common methods of pseudonymisation \cite{pseudonimizacja_2017}.\\
+\indent  In this case, pseudonymisation is realized by substitute the data with the string of asterisks ("\textit{*}") (Fig. \ref{fig:accountsAdministrationPseudonimized}). This is done at the application logic level so that the user is not able, for example, to view the actual data in the browser's development tool. All data on which the application operates, including personal data, is stored in the database. When needed, the application logic loads them into the variables in model object (e.g. employee model). From this level, proper or pseudonymised data may be obtained depending on the user's rights and the configuration of the pseudonymisation. 
+Below is an example of getting the name from the model:
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+ 
+func getNameSecured()
+
+	if permission to access the data
+		return nameVariable
+	else
+		return "*******"
+endfunc 
+
+\end{lstlisting}
+\end{minipage}
+
+These functions are used only in places where data is taken from the model directly to the given view. In addition to these special functions, the model also has ordinary functions that take the value directly from the variable regardless of the permissions or configuration: 
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+ 
+func getName()
+	return nameVariable
+endfunc 
+
+\end{lstlisting}
+\end{minipage}
+
+The duality of such data extraction is related to securing the case of using the same functions at the moment of retrieving the value to the view and saving it in the database. In this case, it could happen that the given pseudonymised data will be saved in the database in the place of the correct value.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{kontaPseud.PNG}
+	\caption[Exemplary view of administrating users accounts with pseudonimization included]{Exemplary view of administrating users accounts with pseudonimization included}
+	\label{fig:accountsAdministrationPseudonimized}
 \end{figure}
 
 \subsection{Managing access to the personal data}
@@ -526,16 +576,25 @@ In the next step, one need to ensure that the application is compatible in the t
 	\label{fig:usersDataAccessHistory}
 \end{figure}
 
-To increase the level of security, full access to personal data and their processing may take place if the user has:
+To increase the level of security, full access to personal data and their processing may take place if the user has (Fig. \ref{fig:newRole}):
 
 \begin{itemize}
 
 \item the appropriate role in the system that allows access to a specific view (earlier functionality),
 \item access granted by the administrator via the panel of access to the processing of personal data (new functionality),
-\item assignment to a specific consent in the system, which is the legal basis for the processing of personal data. In the absence of this consent, an error message appears in the administrator's panel for granting personal data processing permissions (new functionality).
+\item assignment to a specific consent in the system, which is the legal basis for the
+processing of personal data. In the absence of this consent, an error message appears in the administrator's panel for granting personal data processing permissions (new functionality).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6cm]{newRole.png}
+	\caption[New access authorization scheme using roles and permission for data processing]{New access authorization scheme using roles and permission for data processing}
+	\label{fig:newRole}
+\end{figure}
 
 \end{itemize}
 
+After adding the user to the list of persons authorized to process personal data. information about this access is stored in the user's session and refreshed each time the user sends a request to the server (e.g. he will want to go to the next view). Refreshing this information is so important that data should be protected as soon as possible after the expiration of the access to processing. 
 
 \subsection{Logs}
 
@@ -654,6 +713,24 @@ The dictionary serves as a repository of values used in the form for adding a ne
 
 The essence of application of this dictionary was to improve the completion of processing activities registry. Because of the amount of data that needs to be entered into the form, writing everything by hand would be too cumbersome. This process has been improved thanks to the use of a dictionary that can be completed both from the interface of the dictionary itself and when filling out the form. One can assign specific values to each field, depending on the needs of the organization that uses this tool.
 
+\subsection{Further development prospects}
+
+In the future, a significant expansion of this module is expected. The analysis of similar, commercial solutions has shown that in order to be more competitive on the market, one must also take care of the development of reporting tools that analyze the risks associated with the processing of personal data or record incidents of personal data breach. Therefore, the smartGDPR module provides for the following functionalities:
+
+\begin{enumerate}
+
+\item Construction of a repository based on the processing activity register and processing category register,
+
+\item categorizing the risk of personal data processing,
+
+\item extensive reporting,
+
+\item periodic risk verification based on surveys,
+
+\item register of incidents related to the management of personal data.
+
+\end{enumerate}
+
 \chapter{Conclusions} \label{sec:sekcjaWnioski}
 
 According to the privacy by design principle, the protection of personal data of application users should be taken into account at the system design stage. In the case of systems processing personal data built before the entry into force of the new regulation, it is for obvious reasons impossible. Therefore, in order for such a system to continue to play its role, it should be adjusted accordingly to the new requirements. At this stage, it is important to precisely determine how data processing has taken place in this system so far. It is also important to determine to what extent personal data are processed, what are the categories of data, what risk for data subjects carries this processing, and above all, whether the application is processing an acceptable range of data resulting from the purpose of processing. One should also verify who has access to this data. It is only the set of all these parameters that allows to specify the appropriate requirements to be implemented so that the application can process data with compliance to GDPR. In particular, that the GDPR directly indicates the mechanisms that allow compliance with certain requirements. In the case of smartGRC application, the problem was the scope of data necessary for processing, as well as broad access to them without verifying the validity of this access. In addition, the application did not meet the requirements of the privacy by default principle, and the data could be processed without the administrator's authorization. Only the implementation of a pseudonymisation mechanism controlled by the administrator in combination with the possibility of granting by him the right to process data, as well as the extension of logging mechanisms and the history of access to personal data processing made it possible to meet these requirements.\\
@@ -673,27 +750,27 @@ The rapid development of technology gives us more and more opportunities in the 
 
 \textit{Cel i zakres pracy}\\ \\
 \indent Niniejsza praca porusza problematykę przetwarzania danych osobowych w przedsiębiorstwie wobec nowego rozporządzenia RODO (\textit{Rozporządzenie Ogólne o Ochronie Danych Osobowych}). Dotyczy ono przetwarzania a także ochrony danych osób fizycznych a podlegać mu będą wszystkie organizacje, firmy, oraz przedsiębiorstwa, które na swoje potrzeby przetwarzają dane osobowe.\\
-\indent W pracy tej zostają omówione podstawowe zagadnienia dotyczace danych osobowych, od definicji, przez genezę ich prawnej ochrony, status przepisów w Polsce przed wejściem w życie rozporządzenia RODO aż po omowienie najważniejszych zmian jakie wnoszą nowe przepisy. Następnie przeanalizowane zostaną dostępne na rynku komercyjne rozwiązania, które pozwolą określić jak funkcjonalności mogą zapewnić zgodność z RODO a także jakie są oferowane narzędzia do wspierania administratorów danych. Część projektowa tej pracy obejmuje dostosowanie istniejącego systemu informatycznego przetwarzającego dane osobowe do zgodności z RODO, a także wprowadzenie w nim nowych funkcjonalności które pozwolą na wsparcie administratórów danych w ich nowych prawnych obowiązkach.
+\indent W pracy tej zostają omówione podstawowe zagadnienia dotyczace danych osobowych, od definicji, przez genezę ich prawnej ochrony, status przepisów w Polsce przed wejściem w życie rozporządzenia RODO aż po omowienie najważniejszych zmian jakie wnoszą nowe przepisy. Następnie przeanalizowane zostaną dostępne na rynku komercyjne rozwiązania, które pozwolą określić jakie funkcjonalności mogą zapewnić zgodność z RODO a także jakie są oferowane narzędzia do wspierania administratorów danych. Część projektowa tej pracy obejmuje dostosowanie istniejącego systemu informatycznego przetwarzającego dane osobowe do zgodności z RODO, a także wprowadzenie w nim nowych funkcjonalności które pozwolą na wsparcie administratórów danych w ich nowych prawnych obowiązkach.
 \indent Wejście w życie nowego rozporządzenia wnosi wiele zmian w zakresie przetwarzania danych osobowych, które wymagają od podmiotów przetwarzających takie dane spełnienie określonych wymagań. Powodem wprowadzenia nowych przepisów, jest gwałtowny rozwój technologiczny, społeczny oraz polityczny na świecie. Coraz większa moc obliczeniowa komputerów pozwala przechowywać i przetwarzać coraz więcej danych z coraz większą prędkością. Komputeryzacja urządzeń codziennego użytku, oraz ich zdolność do wymiany danych przez internet, skutkuje zbieraniem coraz większej ilości danych o ich użytkownikach. Stwarza to zagrożenie dla prywatności jednostki, ponieważ traci ona kontrolę nad ochroną dostępu do swoich personalnych danych. Wiele przedsiębiorstw opiera swój model biznesowy na przetwarzaniu takich danych osobowych. Nowe rozporządzenia ma na celu zapobiegać sytuacjom nadużyć w zakresie przetwarzania danych osobowych, chronić prywatność podmiotów danych w możliwie największym stopniu, a wobec politycznego rozwioju Unii Europejskiej także usprawniać transgraniczny przepływ tych danych.\\ \\
 
 \indent \textit{Ochrona danych osobowych} \\ \\
 \indent Dane osobowe stanowią bardzo wysoką wartość w dzisiejszym świecie.
-Wiele różnych przedsiębiorstw przetwarza dane osobowe w celu osiągania profitów. Przykładem niech będą firmy marketingowe, które na podstawie zachowań ludzi są w stanie dopasować reklamy, które będą atrakcyjne dla potencjalnych nabywców różnych produktów bądź usług. Kosz takich danych jest zależny od rodzaju dostarczanych informacji. Im bardziej precyzyjne dane, tym koszt jest większy. Dane osobowe mogą służyć także do celów politycznych, aby na podstawie poglądów politycznych określić preferowane opcje polityczne. Dlatego też, aby uniknąć niekontrolowanego wykorzystania tych danych z negatywnymi skutkami dla ich właścicieli tak ważna jest ochrona danych osobowych.
-\indent Ochrona danych osobowych ma swoje źródła w rozważaniach filozoficznych. Pierwsze poważne artykuły odnoszące się do prawa do prywatności pojawiły się u schyłku XIX w. Przepisy prawne odnoszące się bezpośrednio do ochrony danych osobowych są stosunkowo nowe i pojawiły się w drugiej połowie XX wieku na terenach państw europejskich. W historycznych aktach prawa międzynarodowego XX wieku, ochrona danych osobowych była raczej "dodatkiem" do przepisów o ochronie prywatności. Akty takie zaczęły pojawiać się w Europie w połowie XX wieku.
+Wiele różnych przedsiębiorstw przetwarza dane osobowe w celu osiągania profitów. Przykładem niech będą firmy marketingowe, które na podstawie zachowań ludzi są w stanie dopasować reklamy do tego, aby były jak najatrakcyjniejsze dla potencjalnych nabywców różnych produktów bądź usług. Kosz takich danych jest zależny od rodzaju dostarczanych informacji. Im bardziej precyzyjne dane, tym koszt jest większy. Dane osobowe mogą służyć także do celów politycznych, aby na podstawie poglądów politycznych zachęcić do głosowania na daną opcję polityczną. Dlatego też, aby uniknąć niekontrolowanego wykorzystania tych danych z negatywnymi skutkami dla ich właścicieli tak ważna jest ochrona danych osobowych.\\
+\indent Ochrona danych osobowych ma swoje źródła w rozważaniach filozoficznych. Pierwsze poważne artykuły odnoszące się do prawa do prywatności pojawiły się u schyłku XIX w. Przepisy prawne odnoszące się bezpośrednio do ochrony danych osobowych są stosunkowo nowe i pojawiły się w drugiej połowie XX wieku na terenach państw europejskich. W historycznych aktach prawa międzynarodowego XX wieku, ochrona danych osobowych była raczej "dodatkiem" do przepisów o ochronie prywatności. Akty takie zaczęły pojawiać się w Europie w połowie XX wieku.\\
 \indent W prawie Polskim przed wejściem RODO, ochronę danych osobowych ragulowały głównie Konstytucja Rzeczypospolitej Polski oraz Ustawa o Ochronie Danych Osobowych, obie z 1997 roku. W związku z przystąpienie Polski do Unii Europejskiej, należało dostosować to prawo do obowiązującej w Europie Dyrektywy 95/46/WE za pomocą szeregu poprawek.\\ \\
 
 \indent \textit{RODO} \\ \\
 \indent Rozporządzenie RODO zostało uchwalone jako Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie
 swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne
-rozporządzenie o ochronie danych). Powstała jako odpowiedź na rosnące przemiany w zakresie technologii, przemian społecznych i politycznych na terenie Unii Europejskiej. Przepisów tych muszą przestrzegać wszystkie podmioty przetwarzające dane osobowe.
-\indent W zakresie definicji danych osobowych, RODO doprecyzowuje ją względem wcześniejszych definicji a także wprowadza i precyzuje także nowe pojęcia takie jak dane biometryczne, dane genetyczne czy pseudonimizacja danych.\\
-\indent Opiera ogólne zasady przetwarzania danych osobowych na regułach takich jak zgodność z prawem, rzetelność, klarowność, ograniczony cel przetwarzania danych, minimalizacji danych, poprawności danych, ograniczonego przechowywania danych, integralności i poufności danych a także rozliczalnośći.\\
+rozporządzenie o ochronie danych). Powstała jako odpowiedź na rosnące przemiany w zakresie technologii, przemian społecznych i politycznych na terenie Unii Europejskiej. Przepisów tych muszą przestrzegać wszystkie podmioty przetwarzające dane osobowe.\\
+\indent W zakresie definicji danych osobowych, RODO doprecyzowuje ją względem wcześniejszych definicji a także wprowadza i precyzuje nowe pojęcia takie jak dane biometryczne, dane genetyczne czy pseudonimizacja danych.\\
+\indent Opiera ogólne zasady przetwarzania danych osobowych na regułach takich jak zgodność z prawem, rzetelność, klarowność, ograniczony cel przetwarzania danych, minimalizacji danych, poprawność danych, ograniczone przechowywanie danych, integralności i poufności danych a także rozliczalność.\\
 \indent Wprowadza nowe obowiązki informacyjne dla administratorów danych, które przewidują jasny, zwięzły i prosty sposób informowania podmiotów danych o tym w jakim celu i w jaki sposób ich dane będą przetwarzane. Daje właścicielom danych osobowych prawa do bycia poinformowanych o czynności przetwarzania, do dostępu do danych, do sprostowania/uzupełnienia danych, do bycia zapomnianym, do ograniczena przetwarzania, do transferu danych, do sprzeciwu a także do niepodlegania automatycznym decyzjom.\\
 \indent Określa podstawy prawne na jakich przetwarzanie może się odbywać. Jedną za takich podstaw jest zgoda podmiotu danych, która powinna być wyrażona dobrowolnie a także w odpowiedniej formie, potwierdzającej świadomość osoby wyrażającej zgodę na przetwarzanie danych. \\
 \indent Nakłada na administratorów danych obowiązek wprowadzenia odpowiednich środków organizacyjnych i technicznych w celu ochrony danych przed zniszczeniem, nieuprawnionym dostępem czy modyfikacją. Wymienia środki ochrony takie jak autoryzacja, ochrona firewall, szyfrowanie danych osobowych, tworzenie kopii zapasowych, pseudonimizację czy anonimizację.\\
 \indent Nakłada na administratora danych bezpośredni obowiązek dokumentowania przetwarzania danych osobowych w formie rejestru czynności przetwarzania, określając precyzyjnie, jakie informacje w takim rejestrze musza się znaleźć. Ma to umożliwić organowi nadzorczemu wgląd w proces przetwarzania danych u danego podmiotu.\\
 \indent Wprowadza zasady prywatności w fazie projektowania a także domyślnej prywatności, które mają skutkować skuteczną ochronę danych osobowych już w fazie planowania projektu zakładającego przetwarzającego dane osobowe.\\
-\indent Nakłada na administratorów danych obowiązek informowania organu nadzorczego o incydencie naruszenia ochrony danych osobowych w czasie do 72 godzin od momentu wykrycia incydentu. Nakazuje także wprowadzenie odpowiednich środków umożliwiający jak najszybsze wykrycie takiego incydentu. W momencie powstania ryzyka naruszenia praw i wolności podmiotów danych nakazuje także bezzwłoczne ich powiadomienie.\\
+\indent Nakłada na administratorów danych obowiązek informowania organu nadzorczego o incydencie naruszenia ochrony danych osobowych w czasie do 72 godzin od momentu wykrycia incydentu. Nakazuje także wprowadzenie odpowiednich środków umożliwiających jak najszybsze wykrycie takiego incydentu. W momencie powstania ryzyka naruszenia praw i wolności podmiotów danych nakazuje także bezzwłoczne ich powiadomienie.\\
 \indent Za bardzo poważne naruszenia przepisów nowe rozporządzenie przewiduje kary rzędu 20 000 000 EUR albo 4\% całkowitego światowego obrotu za roku poprzedni w zależności co większe. Za mniej poważne naruszenia przepisów, przewidywana jest kara 10 000 000 EUR lub 2\% całkowitego światowego obrotu za rok poprzedni, w zależności co większe.\\ \\
 
 \indent \textit{Analiza komercyjnych rozwiązań w zakresie wspierania przetwarzania danych osobowych} \\ \\
@@ -703,12 +780,12 @@ rozporządzenie o ochronie danych). Powstała jako odpowiedź na rosnące przemi
 \indent Firma Microsoft nie udostępnia rozwiązań IT dedykowanych dla administratorów danych do wspierania zgodności z RODO, natomiast jej produkty są dostosowane do wymogów wynikających z nowego rozporządzenia w zakresie  identyfikacji danych osobowych i wrażliwych, zarządzaniu dostępem do aplikacji oraz danych, a także wspieraniu zarządzania retencją danych.\\ \\
 
 \indent \textit{Prototyp aplikacji wspierającej zgodność z RODO} \\ \\
-\indent Jest to rozdział poświęcony projektowej część niniejszej pracy. Przedstawia on aplikację smartGRC, która na potrzeby tej pracy została dostosowana do wymogów RODO oraz rozbudowana o narzędzia wspierające zgodność z nowym rozporządzeniem. Aplikacja jest jest modularnym systemem, podobnym pod względem funkcjonalności do narzędzia RSA Archer GRC. Jej działanie polega na zarządzaniu dostępem użytkowników do różnych systemów, wsparciu w analizie ryzyk, rozbudowanemu raportowaniu, prowadzeniu przeglądów okresowych z danych zawartych w systemach, daje dostęp do konta awaryjnego w systemie SAP. Wszystkie te funkcjonalności wiążą się z przetwarzaniem danych osobowych pracowników. \\
-\indent W celu dostosowania aplikacji do nowych wymogów przeprowadzono inwentaryzację aplikacji pod kątem typu przetwarzanych danych a także miejsc w których te dane są przetwarzane. Analiza ta pozwoliła ustalić, że aplikacja nie zapewnia wystarczającej ochrony pod względem nieautoryzowanego dostępu do danych osobowych związanych, a także może naruszać zasady minimalizacji danych. W związku z tym należało dobrać odpowiednie mechanizmy i funkcjonalności, dzięki którym aplikacja będzie zgodna z wymogami bezpieczeństwa. W celu ochrony danych przed nieautoryzowanym dostępem, wprowadzono możliwość określania co jest daną osobową w aplikacji, spośród wszystkich typów danych zebranych w czasie analizy. Wybór ten odbywa się z poziomu wygodnego panelu administratora. Po określeniu co jest daną osobową, żaden nieuprawniony użytkownik w aplikacji nie ma do niej dostępu, poprzez zastosowanie mechanizmu pseudonimizacji tej danej. Dodatkowo stworzony został panel administratora, pozwalający nadawać uprawnienia do przetwarzania tych danych. Nadanie takiego uprawnienia wykonuje się poprzez dodanie wybranego użytkownika spośród wszystkich kont w systemie, na określony okres, do listy osób uprawnionych do przetwarzania danych osobowych. Dopiero po tej czynności, użytkownik może swobodnie przetwarzać dane osobowe w sytemie. Każde przypisanie, wiąże się z wpisem do historii nadania dostępów w aplikacji, co jest łatwo dostępne z widoku konta danego użytkownika systemu. Wszystkie te operacje, czyli konfigurowanie danych osobowych w systemie oraz nadawanie użytkownikom dostępu do przetwarzania danych jest odpowiednio logowane w dzienniku systemowym, co wspiera zgodność z zasadą rozliczalności.\\
+\indent Jest to rozdział poświęcony projektowej część niniejszej pracy. Przedstawia on aplikację smartGRC, która na potrzeby tej pracy została dostosowana do wymogów RODO oraz rozbudowana o narzędzia wspierające zgodność z nowym rozporządzeniem. Aplikacja jest modularnym systemem, podobnym pod względem funkcjonalności do narzędzia RSA Archer GRC. Jej działanie polega na zarządzaniu dostępem użytkowników do różnych systemów, wsparciu w analizie ryzyk, rozbudowanemu raportowaniu, prowadzeniu przeglądów okresowych z danych zawartych w systemach. Daje dostęp do konta awaryjnego w systemie SAP. Wszystkie te funkcjonalności wiążą się z przetwarzaniem danych osobowych pracowników. \\
+\indent W celu dostosowania aplikacji do nowych wymogów przeprowadzono inwentaryzację aplikacji pod kątem typu przetwarzanych danych a także miejsc w których te dane są przetwarzane. Analiza ta pozwoliła ustalić, że aplikacja nie zapewnia wystarczającej ochrony pod względem nieautoryzowanego dostępu do danych osobowych, a także może naruszać zasady minimalizacji danych. W związku z tym należało dobrać odpowiednie mechanizmy i funkcjonalności, dzięki którym aplikacja będzie zgodna z wymogami bezpieczeństwa. W celu ochrony danych przed nieautoryzowanym dostępem, wprowadzono możliwość określania co jest daną osobową w aplikacji, spośród wszystkich typów danych zebranych w czasie analizy. Wybór ten odbywa się z poziomu wygodnego panelu administratora. Po określeniu co jest daną osobową, żaden nieuprawniony użytkownik w aplikacji nie ma do niej dostępu, poprzez zastosowanie mechanizmu pseudonimizacji tej danej. Dodatkowo stworzony został panel administratora, pozwalający nadawać uprawnienia do przetwarzania tych danych. Nadanie takiego uprawnienia wykonuje się poprzez dodanie wybranego użytkownika spośród wszystkich kont w systemie, na określony okres, do listy osób uprawnionych do przetwarzania danych osobowych. Dopiero po tej czynności, użytkownik może swobodnie przetwarzać dane osobowe w sytemie. Każde przypisanie, wiąże się z wpisem do historii nadania dostępów w aplikacji, co jest łatwo dostępne z widoku konta danego użytkownika systemu. Wszystkie te operacje, czyli konfigurowanie danych osobowych w systemie oraz nadawanie użytkownikom dostępu do przetwarzania danych jest odpowiednio logowane w dzienniku systemowym, co wspiera zgodność z zasadą rozliczalności.\\
 \indent Kolejnym krokiem była rozbudowa aplikacji o narzędzia wsparcia administratora danych osobowych w wypełnianiu nowych obowiązków prawnych. Polegała ona na zaimplementowaniu rejestru czynności przetwarzania. Poszczególną czynność przetwarzania dodaje się do rejestru po uprzednim wypełnieniu formularza wymaganymi danymi. Odpowiednio wypełniony formularz trafia do bazy danych. Każdy taki formularz rejestruje dane na temat osoby wypełniającej/modyfikującej. Wsparciem tego rejestru jest słownik, który zawiera pola wymagane przy wypełnianiu formularza. Do każdego z tych pól uprawniona osoba może dodawać wedle potrzeb organizacji określone wartości, które potem będą mogły być użyte w formularzu. Ma to usprawnić proces dodawania wpisów do rejestru.    \\ \\
 
 \indent \textit{Wnioski} \\ \\
-\indent Zasada prywatności w fazie projektowania przewiduje ochronę danych osobowych już  w momencie planowania nowego projektu który zakłada przetwarzanie danych osobowych. Systemy będące w użyciu przed wejście w życie nowego rozporządzenia z oczywistych względów mogą być niezgodne z tą zasadą. Ponadto mogą naruszać podstawowe zasady przetwarzania danych przewidziane w RODO. Dlatego też, aby takie narzędzia mogły dalej pełnić swoją rolę muszą zostać odpowiednio dostosowane. Przystosowanie takiej aplikacji do zgodności z nowymi przepisami wymaga przeprowadzenia analizy pod kątem ustalenia punktów niezgodności, określeniu nowych wymagań, dobraniu mechanizmów oraz funkcjonalności które przystosują tę aplikację do spełniania wymogów nowego rozporządzenia. Rozbudowa narzędzi klasy GRC o rozwiązania wspierające administratora w spełnianiu obowiązków względem RODO jest zasadna ze wzgledu konkurencyjności takiego narzędzia na rynku a także pokrewieństwa naturalnego obszaru działania z obszarem na które wpływa RODO. 
+\indent Zasada prywatności w fazie projektowania przewiduje ochronę danych osobowych już  w momencie planowania nowego projektu który zakłada przetwarzanie danych osobowych. Systemy będące w użyciu przed wejście w życie nowego rozporządzenia z oczywistych względów mogą być niezgodne z tą zasadą. Ponadto mogą naruszać podstawowe zasady przetwarzania danych przewidziane w RODO. Dlatego też, aby takie narzędzia mogły dalej pełnić swoją rolę muszą zostać odpowiednio dostosowane. Przystosowanie takiej aplikacji do zgodności z nowymi przepisami wymaga przeprowadzenia analizy pod kątem ustalenia punktów niezgodności, określeniu nowych wymagań, dobraniu mechanizmów oraz funkcjonalności które przystosują tę aplikację do spełniania wymogów nowego rozporządzenia. Rozbudowa narzędzi klasy GRC o rozwiązania wspierające administratora w spełnianiu obowiązków względem RODO jest zasadna ze wzgledu konkurencyjności takiego narzędzia na rynku a także pokrewieństwa naturalnego obszaru jej działania z obszarem na które wpływa RODO. 
 
 
 \addcontentsline{toc}{chapter}{Bibliography} %utworzenie w spisie treści pozycji Bibliografia

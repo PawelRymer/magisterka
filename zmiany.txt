@@ -1,3 +1,7 @@
+22.06.2018r - Dokończenie rozdzialu o analizie rynku i innych komercyjnych
+	      rozwiazan. Napisanie streszczenia w jezyku polskim.
+	      Poprawki wniesione do rozdzialu o prototypie aplikacji.
+
 21.06.2018r - Rozwiniecie dwoch punktow z rozdzialu o analizie komercyjnych
 	      komercyjnych rozwiazan dostepnych na rynku.
 
